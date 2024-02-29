@@ -1,4 +1,7 @@
 ---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/global.css';
 const pageTitle = "À propos de moi";
 const identity = {
   firstName: "Sarah",
@@ -18,6 +21,10 @@ const skills = [
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skillColor = "navy";
+const fontWeight = "bold";
+const textCase = "uppercase";
 ---
 
 <html lang="en">
@@ -29,10 +36,19 @@ const goal = 3;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <a href="/">Accueil</a>
-    <a href="/about/">À propos</a>
-    <a href="/blog/">Blog</a>
+    <Header />
     <h1>{pageTitle}</h1>
+    <style define:vars={{skillColor, fontWeight, textCase}}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
     <h2>... et de mon nouveau site Astro !</h2>
 
     <p>
@@ -65,7 +81,7 @@ const goal = 3;
     </ul>
     <p>Voici mes compétences :</p>
     <ul>
-      {skills.map((skill) => <li>{skill}</li>)}
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
     </ul>
     {happy && <p>Je suis heureux d'apprendre Astro !</p>}
 
@@ -78,5 +94,9 @@ const goal = 3;
         <p>Mon objectif n'est pas de 3 jours.</p>
       )
     }
+    <Footer />
+    <script>
+      import "../scripts/menu.js";
+    </script>
   </body>
 </html>
