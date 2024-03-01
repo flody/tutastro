@@ -1,0 +1,4 @@
+---
+const allPosts = await Astro.glob('./pages/posts/*.md');
+export type Post = typeof allPosts[0];
+---

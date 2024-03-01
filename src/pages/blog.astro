@@ -4,12 +4,13 @@ const allPosts = await Astro.glob('../pages/posts/*.md');
 import BlogPost from '../components/BlogPost.astro';
 import '../styles/global.css';
 const pageTitle = "Blog"
+import type { Post } from '../types.astro';
 ---
 <BaseLayout pageTitle={pageTitle}>
         <h2>Mon blog d'apprentissage Astro</h2>
         <p>Voici où je vais publier mon parcours d'apprentissage d'Astro.</p>
 	    <ul>
-            {allPosts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
+            {allPosts.map((post: Post) => <BlogPost url={post.url} title={post.frontmatter.title} />)}
  
         </ul>
 </BaseLayout>
